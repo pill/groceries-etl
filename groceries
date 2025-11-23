@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+"""Wrapper script to run groceries CLI with proper PYTHONPATH."""
+
+import sys
+import os
+from pathlib import Path
+
+# Add src to Python path
+project_root = Path(__file__).parent
+src_path = project_root / 'src'
+if str(src_path) not in sys.path:
+    sys.path.insert(0, str(src_path))
+
+# Also add project root for scripts
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+# Import and run CLI
+from groceries.cli.commands import main
+
+if __name__ == '__main__':
+    main()
+
